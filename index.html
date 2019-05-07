@@ -9,18 +9,20 @@
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
 </head>
 <body>
-    <div class="container">
-        <h1>Dog API: A Simple Example</h1>
-
-        <form>
-          <input type="submit" value="Get a dog pic!">
-          <input type="text" name="number-of-dogs" class="js-number-of-dogs" value="3">
-        </form>
-        <section class="results hidden">
-          <h2>Look at this dog!</h2>
-          <img class="results-img" alt="placeholder">
-        </section>
+  <h1>Dog API: A Simple Example</h1>
+  <main>
+    <div>
+      <form id='number-choice'>
+        <label for='dog-number-input'>How many dogs? </label>
+        <input type="number" name="number" id='dog-number-input' />
+          
+        <label for='dog-breed-input'>Breed:</label>
+        <input type='text' name='breed' id='dog-breed-input' />
+        <input type="submit" value="Get a dog pic!" />
+      </form>
     </div>
+<ul class='results'></ul>
+</main>
     <script src="index.js"></script>
 </body>
 </html>

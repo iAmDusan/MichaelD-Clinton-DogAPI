@@ -1,6 +1,55 @@
+/* global $ */
 'use strict';
 
-function getDogImage() {
+const store = {
+  dogs: [],
+};
+
+function addDogsToStore(dogs) {
+  store.dogs = dogs;
+}
+
+function getRandomDogs(num, breed) {
+  num = num || 3;
+
+  return fetch(`https://dog.ceo/api/breed/${breed}/images/random/${num}`)
+    .then(res => res.json());
+}
+
+function handleSubmitDogCount() {
+  $('#number-choice').on('submit', e => {
+    e.preventDefault();
+    const dogNo = e.target.number.value;
+    const breed = e.target.breed.value;
+  
+    getRandomDogs(dogNo, breed)
+      .then(res => {
+        addDogsToStore(res.message);
+        render();
+      })
+      .catch(err => console.log(err));
+  });
+}
+
+function render() {
+  const html = store.dogs.map(dogImg => {
+    return `
+    <li>
+      <img src='${dogImg}' />
+    </li>
+    `;
+  });
+
+  if (store.error) {
+    $('.error-message').html(`<p>${store.error}</p>`);
+  } else {
+    $('.error-message').empty();
+  }
+
+  $('.results').html(html);
+}
+
+/* function getDogImage() {
   fetch('https://dog.ceo/api/breeds/image/random/3')
     .then(response => response.json())
     .then(responseJson => 
@@ -24,8 +73,11 @@ function watchForm() {
     getDogImage();
   });
 }
+*/
 
-$(function() {
-  console.log('App loaded! Waiting for submit!');
-  watchForm();
-});
+function main(){
+  handleSubmitDogCount();
+}
+
+$(main);
+ 
