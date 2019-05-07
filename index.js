@@ -1,7 +1,7 @@
 'use strict';
 
 function getDogImage() {
-  fetch('https://dog.ceo/api/breeds/image/random')
+  fetch('https://dog.ceo/api/breeds/image/random/3')
     .then(response => response.json())
     .then(responseJson => 
       displayResults(responseJson))
@@ -9,7 +9,7 @@ function getDogImage() {
 }
 
 function displayResults(responseJson) {
-  console.log(responseJson);
+  console.log(responseJson.message);
   //replace the existing image with the new one
   $('.results-img').replaceWith(
     `<img src="${responseJson.message}" class="results-img">`
