@@ -6,6 +6,7 @@ const store = {
 };
 
 function addDogsToStore(dogs) {
+  console.log(dogs);
   store.dogs = dogs;
 }
 
@@ -43,7 +44,7 @@ function handleSubmitBreedChoice() {
 
     getBreedChoice(breed)
       .then(res => {
-        addDogsToStore(res.message);
+        addDogsToStore([res.message]);
         render();
       })
       .catch(err => console.log(err));
