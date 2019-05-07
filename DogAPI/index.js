@@ -9,10 +9,16 @@ function addDogsToStore(dogs) {
   store.dogs = dogs;
 }
 
-function getRandomDogs(num, breed) {
+function getRandomDogs(num) {
   num = num || 3;
 
-  return fetch(`https://dog.ceo/api/breed/${breed}/images/random/${num}`)
+  return fetch(`https://dog.ceo/api/breeds/image/random/${num}`)
+    .then(res => res.json());
+}
+
+function getBreedChoice(breed) {
+
+  return fetch(`https://dog.ceo/api/breed/${breed}/images/random`)
     .then(res => res.json());
 }
 
@@ -20,9 +26,22 @@ function handleSubmitDogCount() {
   $('#number-choice').on('submit', e => {
     e.preventDefault();
     const dogNo = e.target.number.value;
-    const breed = e.target.breed.value;
   
-    getRandomDogs(dogNo, breed)
+    getRandomDogs(dogNo)
+      .then(res => {
+        addDogsToStore(res.message);
+        render();
+      })
+      .catch(err => console.log(err));
+  });
+}
+
+function handleSubmitBreedChoice() {
+  $('#breed-choice').on('submit', e => {
+    e.preventDefault();e;
+    const breed = e.target.breed.value;
+
+    getBreedChoice(breed)
       .then(res => {
         addDogsToStore(res.message);
         render();
@@ -77,6 +96,7 @@ function watchForm() {
 
 function main(){
   handleSubmitDogCount();
+  handleSubmitBreedChoice();
 }
 
 $(main);
