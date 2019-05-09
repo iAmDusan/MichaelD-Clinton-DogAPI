@@ -2,32 +2,33 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>National Parks Search</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>National Parks App</title>
     <link rel="stylesheet" href="index.css">
-    <script src="https://code.jquery.com/jquery-3.3.1.js"
-        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
 </head>
 
 <body>
-    <h1>National Parks Complex API</h1>
-    <main>
-        <div>
-            <form id='state-parks'>
-                <label for='parks-number-input'>Max Parks</label>
-                <input type="number" name="number" id='parks-number-input' value='10' />
+    <form id="park-search">
+        <input type="text" name="querySearch" placeholder="Search for a park" required>
+        <label for="maxNum">Max Number of Results</label>
+        <input type="number" name="maxNum" class="maxNum" value="10">
+        <input type="submit" class="submit-button" value="Search">
+    </form>
 
-                <label for='states-input'>State:</label>
-                <input type='text' name='states' id='states-input'/>
-                <input type="submit" value="Get State Parks." />
-            </form>
-        </div>
-        <ul class='results'></ul>
-    </main>
+    <section class="results hidden">
+        <div class="error-message"></div>
+        <h2>Search Results</h2>
+        <ul class="results-list">
+
+        </ul>
+    </section>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
     <script src="index.js"></script>
 </body>
 
 </html>
-
