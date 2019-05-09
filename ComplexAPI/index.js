@@ -20,15 +20,15 @@ const store = {
     formReady: false,
 };
 
-function displayResults(responseJson, maxNumber) {
+function displayResults(responseJson) {
     console.log(responseJson);
     $('.results-list').empty();
-    for (let i = 0; i < responseJson.data.length & i < maxNumber; i++) {
+    for (let i = 0; i < responseJson.data.length; i++) {
         $('.results-list').append(
             `<li>
-        <h3><a href= "${responseJson.data[i].url}">${responseJson.data[i].name}</a></h3>
-        <p>${responseJson.data[i].description}</p>
-      </li>`
+                <h3><a href= "${responseJson.data[i].url}">${responseJson.data[i].name}</a></h3>
+                <p>${responseJson.data[i].description}</p>
+            </li>`
         );
     }
 }
@@ -44,7 +44,9 @@ function formatQueryParams(params) {
 function requestPark(query, maxNumber) {
     console.log('Request park with query and limit it to maxNum');
     const params = {
-        q: query,
+        stateCode: query, 
+        limit: maxNumber, 
+        api_key: apiKey,
     };
     const queryString = formatQueryParams(params);
     const url = searchURL + '&' + queryString;
